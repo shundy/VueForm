@@ -43,3 +43,9 @@ jobs:
 
       - name: Nuxt Build
         run: npm run build
+
+      - name: Archive build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Output
+          path: .output
