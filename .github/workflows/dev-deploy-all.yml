@@ -2,6 +2,14 @@ name: 開発環境
 
 on:
   workflow_dispatch:
+    inputs:
+      environment: # Deploy先を選択できるようにする
+        required: true
+        type: choice
+        options:
+          - 'dev'
+          - 'stg'
+          - 'prod'
 
 permissions:
   contents: read
@@ -15,6 +23,8 @@ concurrency:
 jobs:
   publish:
     secrets: inherit
+    environment: ${{ inputs.environment }}
     uses: './.github/workflows/_template.yml'
     with:
       dotEnvSecretName: DOT_ENV_DEV
+
