@@ -23,8 +23,8 @@ concurrency:
 jobs:
   publish:
     secrets: inherit
-    environment: ${{ inputs.environment }}
     uses: './.github/workflows/_template.yml'
     with:
       dotEnvSecretName: DOT_ENV_DEV
+      environment: ${{ inputs.environment }}
 

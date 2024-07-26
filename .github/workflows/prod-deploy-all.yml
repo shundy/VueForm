@@ -2,6 +2,14 @@ name: 本番環境
 
 on:
   workflow_dispatch:
+    inputs:
+      environment: # Deploy先を選択できるようにする
+        required: true
+        type: choice
+        options:
+          - 'dev'
+          - 'stg'
+          - 'prod'
 
 permissions:
   contents: read
@@ -18,3 +26,5 @@ jobs:
     uses: './.github/workflows/_template.yml'
     with:
       dotEnvSecretName: DOT_ENV_PROD
+      environment: ${{ inputs.environment }}
+
