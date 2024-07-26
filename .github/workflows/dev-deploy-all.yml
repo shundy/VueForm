@@ -1,0 +1,20 @@
+name: 開発環境
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    secrets: inherit
+    uses: './.github/workflows/_template.yml'
+    with:
+      dotEnvSecretName: DOT_ENV_DEV
